@@ -1,4 +1,5 @@
-import express, {Request, Response} from "express";
+import express from "express";
+import healthRoutes from "@/modules/health/health.routes";
 
 export function createApp () {
   const app = express(); 
@@ -7,9 +8,7 @@ export function createApp () {
 
   app.use(express.json());
 
-  app.get("/health", (req: Request, res: Response) => {
-    res.status(200).json({ status : "OK"})
-  })
+  app.use("/health", healthRoutes)
 
   return app;
 }
