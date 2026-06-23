@@ -4,8 +4,8 @@
   "description": "OP TCG Backend",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx watch src/index.ts",
-    "start": "node -r ./tsconfig-paths-bootstrap.js dist/index.js",
+    "dev": "tsx watch src/server.ts",
+    "start": "node -r ./tsconfig-paths-bootstrap.js dist/server.js",
     "clean": "rimraf dist",
     "build": "rimraf dist && tsc && copyfiles -u 1 \"src/**/*.json\" dist",
     "typecheck": "tsc --noEmit"
