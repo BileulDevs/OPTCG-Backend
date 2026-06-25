@@ -8,6 +8,7 @@ export default {
         "feat",
         "fix",
         "chore",
+        "config",
         "docs",
         "refactor",
         "test",
