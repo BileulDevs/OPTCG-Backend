@@ -5,7 +5,14 @@ import eslintConfigPrettier from "eslint-config-prettier";
 
 export default defineConfig(
   {
-    ignores: ["dist/**", "node_modules/**", "eslint.config.mjs", "tsconfig-paths-bootstrap.js"],
+    ignores: [
+      'dist/**',
+      'node_modules/**',
+      'src/generated/**',
+      'eslint.config.mjs',
+      'tsconfig-paths-bootstrap.js',
+      'prisma.config.ts',
+    ],
   },
   {
     files: ["**/*.{js,ts}"],
