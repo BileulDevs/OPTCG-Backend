@@ -1,10 +1,8 @@
 import { createApp } from "./app";
-import "dotenv/config";
+import { config } from "@/shared/config/config";
 
 const server = createApp();
 
-const PORT = process.env.PORT || 3000;
-
-server.listen(PORT, () => {
-  console.log(`Server listening on port : ${PORT}`);
+server.listen(config.port, () => {
+  console.log(`Server started on http://localhost:${config.port} on ${config.nodeEnv}`);
 });
