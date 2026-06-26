@@ -11,3 +11,9 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+model HealthCheck {
+  id        String @id @default(uuid())
+  status    String @default("healthy")
+  checkedAt DateTime @default(now())
+}
