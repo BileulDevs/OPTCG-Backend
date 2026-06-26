@@ -12,6 +12,7 @@ export default defineConfig(
       'eslint.config.mjs',
       'tsconfig-paths-bootstrap.js',
       'prisma.config.ts',
+      'prisma/**',
     ],
   },
   {
