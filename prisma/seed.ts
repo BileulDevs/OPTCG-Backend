@@ -1,8 +1,6 @@
 import { prisma } from "../src/shared/db/prisma";
 import { Color, MatchResult, TournamentType } from "../src/generated/prisma/client";
 
-// ⚠️ Jeu de démarrage À VÉRIFIER/COMPLÉTER avec une source fiable.
-// Les codes, couleurs et chemins d'image sont des placeholders.
 const leaders = [
   {
     code: "OP01-001",
@@ -30,11 +28,10 @@ const leaders = [
   },
 ];
 
-// IDs fixes pour les entités sans clé naturelle → garantit l'idempotence.
-const DEMO_USER_ID = "00000000-0000-0000-0000-0000000000u1";
-const DEMO_DECK_ID = "00000000-0000-0000-0000-0000000000d1";
-const DEMO_TOURNAMENT_ID = "00000000-0000-0000-0000-0000000000t1";
-const DEMO_MATCH_ID = "00000000-0000-0000-0000-0000000000m1";
+const DEMO_USER_ID = "00000000-0000-0000-0000-000000000001";
+const DEMO_DECK_ID = "00000000-0000-0000-0000-000000000002";
+const DEMO_TOURNAMENT_ID = "00000000-0000-0000-0000-000000000003";
+const DEMO_MATCH_ID = "00000000-0000-0000-0000-000000000004";
 
 async function main() {
   // 1) Leaders (données de référence) — upsert par code unique
@@ -110,13 +107,20 @@ async function main() {
       wentFirst: true,
       score: "2-1",
       opponentName: "Joueur B",
+
+      playerDeckName: deck.name,
+      playerLeaderCode: zoro.code,
+      playerLeaderName: zoro.name,
+      opponentLeaderCode: luffy.code,
+      opponentLeaderName: luffy.name,
+
       tournamentId: tournament.id,
       deckId: deck.id,
       opponentLeaderId: luffy.id,
     },
   });
 
-  console.log("Seed terminé.");
+  console.log("Seed completed");
 }
 
 main()
