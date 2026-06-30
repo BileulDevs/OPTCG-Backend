@@ -10,6 +10,11 @@ export abstract class AppError extends Error {
   }
 }
 
+export interface FieldError {
+  field: string;
+  message: string;
+}
+
 export class ValidationError extends AppError {
   constructor(
     message: string,
@@ -44,7 +49,8 @@ export class ConflictError extends AppError {
   }
 }
 
-export interface FieldError {
-  field: string;
-  message: string;
+export class TooManyRequestsError extends AppError {
+  constructor(message: string, code: string) {
+    super(message, 429, code);
+  }
 }
