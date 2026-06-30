@@ -1,7 +1,7 @@
 import { config, type Config } from "@/shared/config/config";
 
 export interface HealthStatus {
-  status: "ok";
+  status: "healthy";
   uptime: number;
   timestamp: string;
   env: Config["nodeEnv"];
@@ -9,7 +9,7 @@ export interface HealthStatus {
 
 export function getHealthStatus(): HealthStatus {
   return {
-    status: "ok",
+    status: "healthy",
     uptime: Number(process.uptime().toFixed(2)),
     timestamp: new Date().toISOString(),
     env: config.nodeEnv,
