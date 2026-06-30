@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { AppError } from "@/shared/errors/AppError";
-import { config } from "@/shared/config/config";
+import { AppError, ValidationError } from "@/shared/errors/AppError";
 
 export const errorHandler = (err: unknown, req: Request, res: Response, _next: NextFunction) => {
   if (err instanceof AppError) {
@@ -8,14 +7,15 @@ export const errorHandler = (err: unknown, req: Request, res: Response, _next: N
       error: {
         message: err.message,
         code: err.code,
+        ...(err instanceof ValidationError && err.details ? { details: err.details } : {}),
       },
     });
   } else {
-    req.log.error({ err: config.isProduction ? undefined : err }, "An internal error has occured");
+    req.log.error({ err }, "An internal error has occurred");
 
     res.status(500).json({
       error: {
-        message: "An internal error has occured",
+        message: "An internal error has occurred",
         code: "INTERNAL_ERROR",
       },
     });
