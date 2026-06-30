@@ -1,8 +1,9 @@
 import { createApp } from "./app";
 import { config } from "@/shared/config/config";
+import { logger } from "@/shared/logger/logger";
 
 const server = createApp();
 
 server.listen(config.port, () => {
-  console.log(`Server started on http://localhost:${config.port} on ${config.nodeEnv}`);
+  logger.info({ port: config.port, env: config.nodeEnv }, "Server started");
 });

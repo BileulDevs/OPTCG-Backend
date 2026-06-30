@@ -11,10 +11,7 @@ export const errorHandler = (err: unknown, req: Request, res: Response, _next: N
       },
     });
   } else {
-    console.error({
-      requestId: req.requestId,
-      error: config.isProduction ? "Internal error" : err,
-    });
+    req.log.error({ err: config.isProduction ? undefined : err }, "An internal error has occured");
 
     res.status(500).json({
       error: {
